@@ -16,7 +16,7 @@ const ranges: { label: string; value: DateRange }[] = [
 
 export function DateRangeSelector({ value, onChange }: DateRangeSelectorProps) {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       {ranges.map((range) => (
         <Button
           key={range.value}

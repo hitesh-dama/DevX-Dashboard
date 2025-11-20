@@ -55,7 +55,7 @@ export function DashboardContent() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-xl font-semibold">Key Metrics</h2>
         <DateRangeSelector value={dateRange} onChange={setDateRange} />
       </div>
