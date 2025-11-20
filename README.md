@@ -88,22 +88,3 @@ Run the unit test suite:
 ```bash
 npm run test
 ```
-
-## Trade-offs & Considerations
-
-1.  **Mock Data vs. Real Database:**
-    Currently uses in-memory mock data for ease of setup and demonstration. In a production environment, this would be replaced by a database connection (PostgreSQL/Supabase) within the API handlers.
-
-2.  **Client-Side Filtering:**
-    For this demo, some filtering logic resides on the client/mock-API boundary. For large-scale production datasets, this logic would move entirely to the database query layer.
-
-## Future Roadmap
-
-1.  **Database Integration:** Connect to a persistent data store.
-2.  **Authentication:** Implement NextAuth.js for secure access.
-3.  **Export Capabilities:** Add CSV/PDF export for reports.
-4.  **WebSocket Integration:** Enable live updates for the dashboard.
-
-## License
-
-MIT
