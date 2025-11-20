@@ -12,9 +12,7 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error('Error:', error);
-  }, [error]);
+
 
   return (
     <div className="p-6">
