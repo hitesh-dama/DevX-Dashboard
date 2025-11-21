@@ -6,7 +6,7 @@ import { api } from '@/lib/api';
 import { KPICard } from '@/components/dashboard/kpi-card';
 import { RevenueChart } from '@/components/dashboard/revenue-chart';
 import { DateRangeSelector } from '@/components/dashboard/date-range-selector';
-import { DollarSign, ShoppingCart, Users, TrendingDown } from 'lucide-react';
+import { IndianRupee, ShoppingCart, Users, TrendingDown } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils/calculations';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
@@ -64,7 +64,7 @@ export function DashboardContent() {
         <KPICard
           title="Total Revenue"
           value={formatCurrency(kpis.totalRevenue)}
-          icon={DollarSign}
+          icon={IndianRupee}
         />
         <KPICard
           title="Total Orders"
