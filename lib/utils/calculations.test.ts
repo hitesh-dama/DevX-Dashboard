@@ -8,7 +8,7 @@ const mockOrders: Order[] = [
         customerId: 'c1',
         customerName: 'John Doe',
         customerEmail: 'john@example.com',
-        orderDate: new Date().toISOString(), // Today
+        orderDate: new Date().toISOString(),
         amount: 100,
         status: 'PAID'
     },
@@ -17,16 +17,16 @@ const mockOrders: Order[] = [
         customerId: 'c2',
         customerName: 'Jane Smith',
         customerEmail: 'jane@example.com',
-        orderDate: new Date().toISOString(), // Today
+        orderDate: new Date().toISOString(),
         amount: 200,
         status: 'PENDING'
     },
     {
         id: '3',
-        customerId: 'c1', // Same customer as order 1
+        customerId: 'c1',
         customerName: 'John Doe',
         customerEmail: 'john@example.com',
-        orderDate: new Date(Date.now() - 86400000 * 10).toISOString(), // 10 days ago
+        orderDate: new Date(Date.now() - 86400000 * 10).toISOString(),
         amount: 50,
         status: 'REFUNDED'
     }
@@ -44,7 +44,7 @@ describe('Utility Functions', () => {
     describe('formatDate', () => {
         it('formats date strings correctly', () => {
             const date = '2025-01-15T10:00:00Z';
-            // Note: The output depends on the locale, but we expect "Jan 15, 2025" for en-US
+
             expect(formatDate(date)).toBe('Jan 15, 2025');
         });
     });
@@ -52,13 +52,6 @@ describe('Utility Functions', () => {
     describe('calculateKPIs', () => {
         it('calculates total revenue correctly for PAID orders within range', () => {
             const kpis = calculateKPIs(mockOrders, 30);
-            // Order 1 (100) + Order 3 (0, refunded) + Order 2 (0, pending)
-            // Wait, logic check:
-            // Order 1: PAID, Today. Included.
-            // Order 2: PENDING, Today. Included in count, but not revenue.
-            // Order 3: REFUNDED, 10 days ago. Included in count (within 30 days).
-
-            // Total Revenue = Only PAID orders = 100
             expect(kpis.totalRevenue).toBe(100);
         });
 
@@ -69,24 +62,18 @@ describe('Utility Functions', () => {
 
         it('calculates active customers correctly', () => {
             const kpis = calculateKPIs(mockOrders, 30);
-            // c1 and c2 are active
             expect(kpis.activeCustomers).toBe(2);
         });
 
         it('calculates refund rate correctly', () => {
             const kpis = calculateKPIs(mockOrders, 30);
-            // 1 refunded out of 3 total
-            // 1/3 * 100 = 33.333...
             expect(kpis.refundRate).toBeCloseTo(33.33, 1);
         });
 
         it('filters out orders outside the date range', () => {
-            const kpis = calculateKPIs(mockOrders, 7); // Last 7 days
-            // Order 3 is 10 days ago, should be excluded.
-            // Remaining: Order 1 and Order 2.
-
+            const kpis = calculateKPIs(mockOrders, 7);
             expect(kpis.totalOrders).toBe(2);
-            expect(kpis.totalRevenue).toBe(100); // Order 1 is PAID
+            expect(kpis.totalRevenue).toBe(100);
         });
     });
 });
